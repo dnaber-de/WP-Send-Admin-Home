@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name: Send »Admin« Home
- * Description: Redirect login attempts with »admin« or »administrator« as login name to localhost.
+ * Description: Redirect login attempts with blacklisted login names to http://localhost.
  * Author: David Naber
  * Author URI: http://dnaber.de/
  * Version: 2014.12.19
