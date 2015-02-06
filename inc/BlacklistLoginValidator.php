@@ -39,7 +39,8 @@ class BlacklistLoginValidator implements LoginValidatorInterface {
 
 		$invalid = array(
 			'admin',
-			'administrator'
+			'administrator',
+			'adm1n'
 		);
 		foreach ( $invalid as $index => $name )
 			if ( username_exists( $name ) )
