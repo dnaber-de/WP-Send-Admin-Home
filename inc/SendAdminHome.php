@@ -6,14 +6,14 @@ namespace SendAdminHome;
 class SendAdminHome {
 
 	/**
-	 * @type LoginValidator
+	 * @type LoginValidatorInterface
 	 */
 	private $login_validator;
 
 	/**
-	 * @param LoginValidator $login_validator
+	 * @param LoginValidatorInterface $login_validator
 	 */
-	function __construct( LoginValidator $login_validator ) {
+	function __construct( LoginValidatorInterface $login_validator ) {
 
 		$this->login_validator = $login_validator;
 	}

@@ -3,7 +3,7 @@
 
 namespace SendAdminHome;
 
-class LoginValidator implements LoginValidatorInterface {
+class BlacklistLoginValidator implements LoginValidatorInterface {
 
 	/**
 	 * @type array
