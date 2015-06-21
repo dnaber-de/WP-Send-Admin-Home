@@ -22,7 +22,10 @@ class SendAdminHome {
 	 */
 	public function intercept_login() {
 
-		if ( $this->login_validator->is_login_invalid() ) {
+		$login = isset( $_REQUEST[ 'log' ] )
+			? $_REQUEST[ 'log' ]
+			: '';
+		if ( $this->login_validator->is_login_invalid( $login ) ) {
 			$this->send_home();
 			exit;
 		}

@@ -10,25 +10,35 @@ class BlacklistLoginValidator implements LoginValidatorInterface {
 	private $request;
 
 	/**
-	 * @param array $request
+	 * @type array
 	 */
-	public function __construct( array $request ) {
+	private $invalid_login_names = [];
 
-		$this->request = $request;
+	/**
+	 * Setup list of invalid login names
+	 */
+	public function __construct() {
+
+		$invalid_login_names = array(
+			'admin',
+			'administrator',
+			'adm1n'
+		);
+		foreach ( $invalid_login_names as $index => $name )
+			if ( username_exists( $name ) )
+				unset( $invalid_login_names[ $index ] );
+
+		$this->invalid_login_names = $invalid_login_names;
 	}
 
 	/**
+	 * @param $login
 	 * @return bool
 	 */
-	public function is_login_invalid() {
+	public function is_login_invalid( $login ) {
 
-		if ( isset( $this->request[ 'log' ] )
-			&& in_array( $this->request[ 'log' ], $this->get_invalid_login_names() )
-		) {
-			return TRUE;
-		}
-
-		return FALSE;
+		return
+			in_array( $login, $this->invalid_login_names );
 	}
 
 	/**
@@ -36,15 +46,6 @@ class BlacklistLoginValidator implements LoginValidatorInterface {
 	 */
 	public function get_invalid_login_names() {
 
-		$invalid = array(
-			'admin',
-			'administrator',
-			'adm1n'
-		);
-		foreach ( $invalid as $index => $name )
-			if ( username_exists( $name ) )
-				unset( $invalid[ $index ] );
-
-		return $invalid;
+		return $this->invalid_login_names;
 	}
-} 
+}
