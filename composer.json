@@ -1,0 +1,6 @@
+{
+    "require-dev": {
+        "inpsyde/wp-tests-starter": "dev-master",
+        "inpsyde/wordpress-dev": "~4.2"
+    }
+}
