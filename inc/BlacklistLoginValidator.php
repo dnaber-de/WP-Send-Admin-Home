@@ -1,6 +1,5 @@
 <?php # -*- coding: utf-8 -*-
 
-
 namespace SendAdminHome;
 
 class BlacklistLoginValidator implements LoginValidatorInterface {
