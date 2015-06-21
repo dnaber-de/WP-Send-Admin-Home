@@ -1,0 +1,21 @@
+<phpunit
+	bootstrap="bootstrap.dist.php"
+	backupGlobals="false"
+	colors="true"
+	convertErrorsToExceptions="true"
+	convertNoticesToExceptions="true"
+	convertWarningsToExceptions="true"
+	>
+	<php>
+		<const name="SendAdminHome\Test\WPDB\USER" value="" />
+		<const name="SendAdminHome\Test\WPDB\NAME" value="" />
+		<const name="SendAdminHome\Test\WPDB\PASSWORD" value="" />
+		<const name="SendAdminHome\Test\WPDB\HOST" value="localhost" />
+		<const name="SendAdminHome\Test\WPDB\TABLE_PREFIX" value="sah_" />
+	</php>
+	<testsuites>
+		<testsuite name="WP Integration Tests">
+			<directory prefix="" suffix="Test.php">./Test/</directory>
+		</testsuite>
+	</testsuites>
+</phpunit>
