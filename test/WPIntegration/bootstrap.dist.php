@@ -33,6 +33,12 @@ $testStarter->defineTestsDomain( 'example.org' );
 $testStarter->defineTestsEmail( 'admin@example.org' );
 $testStarter->defineTestsEmail( 'Send Admin Home Tests' );
 
+$testStarter->defineConst( 'WP_PLUGIN_DIR', dirname( $baseDir ) );
+
+$GLOBALS['wp_tests_options'] = array(
+	'active_plugins' => array( basename( $baseDir ) . '/send-admin-home.php' ),
+);
+
 $testStarter->bootstrap();
 
 $srcLoader = function( $class ) use ( $baseDir ) {
