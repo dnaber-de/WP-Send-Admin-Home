@@ -41,10 +41,6 @@ class BlacklistLoginValidatorTest extends \WP_UnitTestCase {
 		wp_delete_user( $user->ID );
 		$admin = get_user_by( 'login', 'admin' );
 
-		/**
-		 * as the user 'admin' exists by default
-		 * it should not appear in this list
-		 */
 		$expectedLogins = [
 			'admin',
 			'adm1n',
