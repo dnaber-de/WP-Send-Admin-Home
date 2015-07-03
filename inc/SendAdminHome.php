@@ -10,11 +10,29 @@ class SendAdminHome {
 	private $login_validator;
 
 	/**
-	 * @param LoginValidatorInterface $login_validator
+	 * @type HttpHeaderEmitter
 	 */
-	function __construct( LoginValidatorInterface $login_validator ) {
+	private $http_header_emitter;
+
+	/**
+	 * @type ScriptTerminator
+	 */
+	private $script_terminator;
+
+	/**
+	 * @param LoginValidatorInterface $login_validator
+	 * @param HttpHeaderEmitter       $http_header_emitter
+	 * @param ScriptTerminator        $script_terminator
+	 */
+	function __construct(
+		LoginValidatorInterface $login_validator,
+		HttpHeaderEmitter $http_header_emitter,
+		ScriptTerminator $script_terminator
+	) {
 
 		$this->login_validator = $login_validator;
+		$this->http_header_emitter = $http_header_emitter;
+		$this->script_terminator = $script_terminator;
 	}
 
 	/**
@@ -27,7 +45,7 @@ class SendAdminHome {
 			: '';
 		if ( $this->login_validator->is_login_invalid( $login ) ) {
 			$this->send_home();
-			exit;
+			$this->script_terminator->stop();
 		}
 	}
 
@@ -36,7 +54,7 @@ class SendAdminHome {
 	 */
 	public function send_home() {
 
-		status_header( 302 ); //found!
-		header( 'Location: http://localhost' );
+		$this->http_header_emitter->status_header( 302 ); //found!
+		$this->http_header_emitter->header( 'Location: http://localhost' );
 	}
 } 
