@@ -72,6 +72,36 @@ class SendAdminHomeTest extends \PHPUnit_Framework_TestCase {
 		$testee->intercept_login();
 	}
 
+
+	public function testInterceptLoginWithParameter() {
+
+		$username = 'jondoe';
+		$http_header_emitter_mock = $this->getHttpHeaderEmitterMock();
+		$http_header_emitter_mock->expects( $this->never() )
+			->method( 'status_header' );
+
+		$http_header_emitter_mock->expects( $this->never() )
+			->method( 'header' );
+
+		$login_validator_mock = $this->getLoginValidatorMock();
+		$login_validator_mock->expects( $this->exactly( 1 ) )
+			->method( 'is_login_invalid' )
+			->with( $username )
+			->willReturn( FALSE ); // assume the username to be valid
+
+		$script_terminator_mock = $this->getScriptTerminatorMock();
+		$script_terminator_mock->expects( $this->never() )
+			->method( 'stop' );
+
+		$testee = new SendAdminHome\SendAdminHome(
+			$login_validator_mock,
+			$http_header_emitter_mock,
+			$script_terminator_mock
+		);
+
+		$testee->intercept_login( NULL, $username, NULL );
+	}
+
 	private function getHttpHeaderEmitterMock() {
 
 		$mock = $this->getMockBuilder( 'SendAdminHome\HttpHeaderEmitter' )

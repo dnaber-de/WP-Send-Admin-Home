@@ -24,4 +24,6 @@ function init() {
 	$plugin    = new SendAdminHome( $validator, new HttpHeaderEmitter, new ScriptTerminator );
 
 	add_action( 'login_init', array( $plugin, 'intercept_login' ) );
+	add_filter( 'authenticate', array( $plugin, 'intercept_login' ), 5, 3 );
+
 }

@@ -37,12 +37,20 @@ class SendAdminHome {
 
 	/**
 	 * @wp_hook login_init
+	 * @wp_hook authenticate (In case of xml-rpc requests)
+	 * @param NULL $null
+	 * @param string $username
+	 * @param string $password
 	 */
-	public function intercept_login() {
+	public function intercept_login( $null = NULL, $username = NULL, $password = NULL ) {
 
-		$login = isset( $_REQUEST[ 'log' ] )
-			? $_REQUEST[ 'log' ]
-			: '';
+		if ( $username ) {
+			$login = $username;
+		} else {
+			$login = isset( $_REQUEST[ 'log' ] )
+				? $_REQUEST[ 'log' ]
+				: '';
+		}
 		if ( $this->login_validator->is_login_invalid( $login ) ) {
 			$this->send_home();
 			$this->script_terminator->stop();
