@@ -14,7 +14,8 @@ class BlacklistLoginValidatorTest extends \WP_UnitTestCase {
 		 */
 		$expectedLogins = [
 			'adm1n',
-			'administrator'
+			'administrator',
+			'test'
 		];
 
 		$testee = new SendAdminHome\BlacklistLoginValidator;
@@ -37,7 +38,8 @@ class BlacklistLoginValidatorTest extends \WP_UnitTestCase {
 		$expectedLogins = [
 			'admin',
 			'adm1n',
-			'administrator'
+			'administrator',
+			'test'
 		];
 
 		$testee = new SendAdminHome\BlacklistLoginValidator;

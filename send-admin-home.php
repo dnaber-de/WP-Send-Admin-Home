@@ -5,7 +5,7 @@
  * Description: Redirect login attempts with blacklisted login names to http://localhost.
  * Author: David Naber
  * Author URI: http://dnaber.de/
- * Version: 2015.07.05
+ * Version: 2015.07.20
  * Licence: MIT
  */
 
